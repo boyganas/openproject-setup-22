@@ -16,7 +16,7 @@ cd openproject-setup
 
 mv * /home/g33j3t
 
-bash openproject-setup20
+bash openproject-setup22
 
 Follow instruction given
 

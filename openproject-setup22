@@ -1,0 +1,46 @@
+#!/bin/bash
+clear
+echo
+echo
+echo -e "\e[35mPlease run on UBUNTU 22.04 LTS.\e[0m"
+echo
+echo
+echo -e "\e[35mCurrent version\e[0m"
+cat /etc/os-release | grep "VERSION="
+echo
+echo
+read -p "Press [Enter] key to start installation ..."
+echo
+echo
+sudo apt-get install gnupg2 wget apt-transport-https -y
+sudo wget -O /etc/apt/trusted.gpg.d/openproject.asc https://dl.packager.io/srv/opf/openproject/key
+sudo wget -O /etc/apt/sources.list.d/openproject.list https://dl.packager.io/srv/opf/openproject/stable/13/installer/ubuntu/22.04.repo
+sudo apt update && sudo apt upgrade -y
+echo
+echo
+sudo apt install openproject -y
+echo
+echo
+read -p "Press [Enter] key to continue ..."
+sudo openproject configure
+echo
+echo
+echo -e "\e[35m"
+echo "We're almost done!"
+echo
+echo -e "\e[33m"
+echo "Head over to this URL in your web browser."
+echo
+echo "http://$(hostname -I | awk '{print $1}')"
+echo
+mv /opt/openproject/public/assets/logo_openproject_white_big-2c6d79fa03613154cf6bd67c622dbae5b93ed3199e0e7332d96b6f8ec21f85a1.png /opt/openproject/public/assets/logo_openproject_white_big-2c6d79fa03613154cf6bd67c622dbae5b93ed3199e0e7332d96b6f8ec21f85a1.png-bak
+cp /home/g33j3t/oum-logo-600x113-bw.png  /opt/openproject/public/assets/logo_openproject_white_big-2c6d79fa03613154cf6bd67c622dbae5b93ed3199e0e7332d96b6f8ec21f85a1.png
+mv /opt/openproject/public/favicon.ico  /opt/openproject/public/favicon.ico-bak
+cp /home/g33j3t/favicon-oum.ico  /opt/openproject/public/favicon.ico
+mv /opt/openproject/public/assets/apple-touch-icon-120x120-7cc127b22515cb03208e0cd2ab29c30545d6c1d232a8d68058c751bf29626354.png /opt/openproject/public/assets/apple-touch-icon-120x120-7cc127b22515cb03208e0cd2ab29c30545d6c1d232a8d68058c751bf29626354.png-bak
+cp /home/g33j3t/oum-logo-only-120x120.png  /opt/openproject/public/assets/apple-touch-icon-120x120-7cc127b22515cb03208e0cd2ab29c30545d6c1d232a8d68058c751bf29626354.png
+echo
+echo -e "\e[34mFINISH\e[0m"
+echo
+echo
+echo
